@@ -1,6 +1,6 @@
 package com.example.project.user;
 
-import com.example.main.common.BaseEntity;
+import com.example.project.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
