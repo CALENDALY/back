@@ -1,14 +1,12 @@
-package com.example.project.user;
+package com.example.project.user.repository;
 
 import com.example.project.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
@@ -25,4 +23,12 @@ public class User extends BaseEntity {
     private String accessToken;
     @Enumerated(value = EnumType.STRING)
     private SNSType snsType;
+
+    @ManyToOne
+    @JoinColumn(name = "groupId")
+    private Group group;
+
+    public void enrollEmail(String email) {
+        this.userEmail = email;
+    }
 }

@@ -1,5 +1,8 @@
-package com.example.project.user;
+package com.example.project.user.controller;
 
+import com.example.project.user.service.UserService;
+import com.example.project.user.dto.UserDto;
+import com.example.project.user.repository.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
