@@ -20,3 +20,17 @@ spring:
     properties:
       hibernate:
         use_sql_comments: true
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+feign:
+  hystrix:
+    enabled: true
+client:
+  key: 959e2be19ce13df290c15d194387bab1
+  grant_type: authorization_code
+  redirect_uri: http://localhost:8080/kakao/info
+token:
+  expiration_time: 86400000
+  secret: userToken
