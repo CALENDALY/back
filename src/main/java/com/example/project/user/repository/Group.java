@@ -14,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter@Setter
+@Table(name = "groups")
 public class Group extends BaseEntity {
 
     @Id
@@ -21,7 +22,7 @@ public class Group extends BaseEntity {
     private Long groupId;
     private String groupName;
 
-    @OneToMany(mappedBy = "group", cascade = CascadeType.REMOVE)
-    private List<User> users = new ArrayList<>();
+    @OneToMany(mappedBy = "group")
+    private List<UserAndGroupMiddle> middle = new ArrayList<>();
 
 }

@@ -1,10 +1,14 @@
 package com.example.project.user.service;
 
+import com.example.project.user.kakao.KakaoData;
+import com.example.project.user.repository.SNSType;
 import com.example.project.user.repository.User;
 import com.example.project.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -14,21 +18,34 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public User createUser(String email) {
-        User user = new User();
-        user.enrollEmail(email);
+    public User createUser(KakaoData.KakaoAccount account, String accessToken, SNSType type) {
+        Optional<User> userCheck = repository.findByUserEmailAndSnsType(account.email(), type);
+        if(userCheck.isPresent()){
+            return userCheck.get();
+        }
+
+        User user = User.builder()
+                .email(account.email())
+                .nickName(account.profile().nickname())
+                .snsType(type)
+                .imageUrl(account.profile().thumbnail_image_url())
+                .accessToken(accessToken)
+                .build();
+
         repository.save(user);
         return repository.save(user);
     }
 
     @Override
     @Transactional
-    public User updateUser(String modifyEmail) {
+    public User updateAccessToken(String email, SNSType snsType, String accessToken) {
 
         // JPA - Dirty check
-        User user = repository.findById(1L).get();
-        user.setUserEmail(modifyEmail);
+        User user = repository.findByUserEmailAndSnsType(email, snsType)
+                .orElseThrow(() -> new IllegalArgumentException("에러"));
 
-        return null;
+        user.updateToken(accessToken);
+
+        return user;
     }
 }

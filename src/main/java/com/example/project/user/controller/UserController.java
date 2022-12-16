@@ -15,8 +15,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-    @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserDto userDto){
-        return ResponseEntity.ok(userService.createUser(userDto.getEmail()));
-    }
 }

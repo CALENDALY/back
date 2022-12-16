@@ -1,8 +1,8 @@
 package com.example.project.common.security.custom;
 
-import com.application.common.error.ErrorCode;
-import com.application.user.repository.User;
-import com.application.user.repository.UserRepository;
+import com.example.project.common.error.ErrorCode;
+import com.example.project.user.repository.User;
+import com.example.project.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.userdetails.UserDetails;

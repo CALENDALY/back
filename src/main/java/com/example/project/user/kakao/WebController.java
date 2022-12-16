@@ -1,5 +1,7 @@
 package com.example.project.user.kakao;
 
+import com.example.project.user.repository.SNSType;
+import com.example.project.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,8 +25,10 @@ public class WebController {
     private String grant_type;
     @Value("${client.redirect_uri}")
     private String redirect_uri;
+
     private final KakaoClient client;
     private final KakaoApiClient loginClient;
+    private final UserService userService;
 
     @GetMapping("/login")
     public String login(){
@@ -47,6 +51,9 @@ public class WebController {
         model.addAttribute("userInfo", contents);
 
        model.addAttribute("img_url", contents.kakao_account().profile().thumbnail_image_url());
+
+
+       userService.createUser(contents.kakao_account(),response.access_token() , SNSType.KAKAO);
 
         //ci는 비즈니스 전환후 검수신청 -> 허락받아야 수집 가능
         return "kakaoCI/index";

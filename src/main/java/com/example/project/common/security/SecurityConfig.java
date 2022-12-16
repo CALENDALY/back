@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -45,13 +46,14 @@ public class SecurityConfig {
              .authorizeRequests()
                 .antMatchers("/signin",
                         "/signup",
-                        "/h2-console/**").permitAll()
+                        "/h2-console/**", "/kakao/**", "/templates").permitAll()
                 .antMatchers("/swagger-resources/**",
                         "/swagger-ui.html",
                         "/v2/api-docs",
                         "/webjars/**").permitAll()
-                .anyRequest().authenticated().and()
-             .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .antMatchers("/**").permitAll()
+                .and()
+//             .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
              .formLogin()
                 .disable()
              .headers()
@@ -64,5 +66,10 @@ public class SecurityConfig {
         return http.build();
     }
 
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring()
+                .antMatchers("/images/**", "/js/**", "/webjars/**", "/templates/kakaoCI/**", "/static/images/**");
+    }
 
 }
