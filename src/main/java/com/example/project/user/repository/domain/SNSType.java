@@ -1,4 +1,4 @@
-package com.example.project.user.repository;
+package com.example.project.user.repository.domain;
 
 public enum SNSType {
     KAKAO("KAKAO"),

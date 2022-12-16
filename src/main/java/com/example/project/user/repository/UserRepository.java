@@ -1,5 +1,7 @@
 package com.example.project.user.repository;
 
+import com.example.project.user.repository.domain.SNSType;
+import com.example.project.user.repository.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

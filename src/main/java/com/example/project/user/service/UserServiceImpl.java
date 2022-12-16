@@ -1,8 +1,8 @@
 package com.example.project.user.service;
 
 import com.example.project.user.kakao.KakaoData;
-import com.example.project.user.repository.SNSType;
-import com.example.project.user.repository.User;
+import com.example.project.user.repository.domain.SNSType;
+import com.example.project.user.repository.domain.User;
 import com.example.project.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     @Transactional
-    public User createUser(KakaoData.KakaoAccount account, String accessToken, SNSType type) {
+    public User createOrLoginUser(KakaoData.KakaoAccount account, String accessToken, SNSType type) {
         Optional<User> userCheck = repository.findByUserEmailAndSnsType(account.email(), type);
         if(userCheck.isPresent()){
             return userCheck.get();

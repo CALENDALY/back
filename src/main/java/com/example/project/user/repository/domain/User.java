@@ -1,4 +1,4 @@
-package com.example.project.user.repository;
+package com.example.project.user.repository.domain;
 
 import com.example.project.common.BaseEntity;
 import lombok.AllArgsConstructor;
@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -34,9 +32,6 @@ public class User extends BaseEntity {
         this.snsType = snsType;
         this.imageUrl = imageUrl;
     }
-
-    @OneToMany(mappedBy = "user")
-    private List<UserAndGroupMiddle> groups = new ArrayList<>();
 
     public void updateToken(String accessToken) {
         this.accessToken = accessToken;

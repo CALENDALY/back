@@ -1,6 +1,6 @@
 package com.example.project.common.security.custom;
 
-import com.example.project.user.repository.User;
+import com.example.project.user.repository.domain.User;
 import lombok.ToString;
 import org.springframework.security.core.authority.AuthorityUtils;
 

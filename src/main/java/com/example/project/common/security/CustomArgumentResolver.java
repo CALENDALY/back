@@ -1,6 +1,6 @@
 package com.example.project.common.security;
 
-import com.example.project.user.repository.User;
+import com.example.project.user.repository.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.core.Authentication;
