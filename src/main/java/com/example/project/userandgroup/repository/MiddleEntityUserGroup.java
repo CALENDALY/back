@@ -25,5 +25,4 @@ public class MiddleEntityUserGroup {
     @ManyToOne(fetch = FetchType.LAZY)
     private Group group;
 
-
 }
