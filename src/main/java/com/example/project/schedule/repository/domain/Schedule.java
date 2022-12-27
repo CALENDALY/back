@@ -2,7 +2,10 @@ package com.example.project.schedule.repository.domain;
 
 import com.example.project.common.BaseEntity;
 import com.example.project.common.DateType;
+import com.example.project.group.repository.Group;
+import com.example.project.user.repository.domain.User;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,19 +14,20 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 public class Schedule extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @DateTimeFormat(style = DateType.TYPE)
-    private LocalDateTime startDt;
+    private String startDt;
 
     @DateTimeFormat(style = DateType.TYPE)
-    private LocalDateTime endDt;
+    private String endDt;
 
     @Column(nullable = false)
     private String subject;
@@ -32,4 +36,11 @@ public class Schedule extends BaseEntity {
     private String contents;
 
     private String thumbNailUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Group group;
+
+    public void matchGroup(Group group){
+        this.group = group;
+    }
 }
