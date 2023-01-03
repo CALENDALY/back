@@ -13,4 +13,9 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
             "where s.group.id = :groupId " +
             "and s.startDt >= :startDt and s.endDt <= :endDt")
     List<Schedule> findAllScheduleInDate(@Param("groupId") Long groupId, @Param("startDt") String startDt, @Param("endDt")String endDt);
+
+    @Query(value = "select s from Schedule s " +
+            "join fetch s.group " +
+            "where s.group.id = :groupId")
+    List<Schedule> findByGroupId(@Param("groupId") Long groupId);
 }

@@ -23,7 +23,7 @@ class SchdServiceImplTest {
     @Test
     void test_find_by_period_date(){
         Group group = new Group();
-        group.setId(1l);
+        group.setName("group1");
         Group groupEntity = repository.save(group);
 
         service.enrollSchedule(ScheduleDto.builder()
@@ -31,16 +31,16 @@ class SchdServiceImplTest {
                 .subject("subject")
                 .startDt("2022-12-24")
                 .endDt("2022-12-25")
-                .build(), groupEntity);
+                .build(), groupEntity.getId());
 
         service.enrollSchedule(ScheduleDto.builder()
                 .contents("id")
                 .subject("subject")
                 .startDt("2023-01-01")
                 .endDt("2023-01-02")
-                .build(), groupEntity);
+                .build(), groupEntity.getId());
 
-        assertThat(service.getScheduleInDate(1L, "2022-12-20", "2022-12-31"))
+        assertThat(service.getScheduleInDate(4L, "2022-12-20", "2022-12-31"))
                 .hasSize(1);
     }
 

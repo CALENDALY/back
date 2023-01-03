@@ -22,8 +22,10 @@ public class ScheduleDto {
         return ScheduleDto.builder()
                 .id(schedule.getId())
                 .subject(schedule.getSubject())
+                .contents(schedule.getContents())
                 .startDt(schedule.getStartDt())
                 .endDt(schedule.getEndDt())
+                .groupId(schedule.getGroup().getId())
                 .build();
     }
 
