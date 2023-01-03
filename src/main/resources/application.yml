@@ -37,7 +37,7 @@ spring:
     cache: false
   sql:
     init:
-      mode: always
+      mode: embedded
       continue-on-error: true
 
 feign:

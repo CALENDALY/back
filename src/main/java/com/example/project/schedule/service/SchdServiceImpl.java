@@ -1,16 +1,13 @@
 package com.example.project.schedule.service;
 
 
-import com.example.project.group.repository.Group;
 import com.example.project.group.repository.GroupRepository;
 import com.example.project.schedule.dto.ScheduleDto;
 import com.example.project.schedule.repository.ScheduleRepository;
 import com.example.project.schedule.repository.domain.Schedule;
-import io.netty.util.internal.StringUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;

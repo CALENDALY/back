@@ -1,5 +1,6 @@
 package com.example.project.schedule.controller;
 
+import com.example.project.group.service.GroupService;
 import com.example.project.schedule.dto.ScheduleDto;
 import com.example.project.schedule.service.SchdService;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,7 @@ import java.util.List;
 public class SchdController {
 
     private final SchdService service;
-
+    private final GroupService groupService;
     @GetMapping("/{groupId}")
     public ResponseEntity<List<ScheduleDto>> getSchds(@PathVariable Long groupId,@RequestBody RequestSchd.GetDate request){
         return ResponseEntity.ok(service.getScheduleInDate(groupId, request.startDate(), request.endDate()));
@@ -35,7 +36,6 @@ public class SchdController {
 
     @DeleteMapping("/{schdId}")
     public ResponseEntity<ScheduleDto> deleteSchd(@PathVariable Long schdId){
-
         return ResponseEntity.ok(
                 service.delete(schdId)
         );
