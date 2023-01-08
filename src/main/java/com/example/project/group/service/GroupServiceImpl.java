@@ -22,6 +22,7 @@ public class GroupServiceImpl implements GroupService {
     private final UserRepository userRepository;
     // Group 생성시 만든 유저 admin 설정
     @Transactional
+    @Override
     public GroupDto createGroup(String userId, GroupDto groupDto){
         Group group = Group.builder()
                 .groupName(groupDto.getGroupName())
