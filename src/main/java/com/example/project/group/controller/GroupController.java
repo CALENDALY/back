@@ -7,13 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/Groups")
+@RequestMapping("/groups")
 @RequiredArgsConstructor
 public class GroupController {
     private final GroupService groupService;
 
     @PostMapping("/{userId}")
-    public ResponseEntity<GroupDto> test(@PathVariable String userId,  @RequestBody GroupDto groupDto){
+    public ResponseEntity<GroupDto> test(@PathVariable Long userId,  @RequestBody GroupDto groupDto){
         return ResponseEntity.ok(groupService.createGroup(userId, groupDto));
     }
 }

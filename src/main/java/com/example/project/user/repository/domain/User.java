@@ -43,6 +43,12 @@ public class User extends BaseEntity {
         this.accessToken = accessToken;
     }
 
+    @Override
+    public void onPrePersist() {
+        super.onPrePersist();
+        groups = new ArrayList<>();
+    }
+
     public void matchEntity(MiddleEntityUserGroup middleEntityUserGroup){
         middleEntityUserGroup.setUser(this);
         this.groups.add(middleEntityUserGroup);

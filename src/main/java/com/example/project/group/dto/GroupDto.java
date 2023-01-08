@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Builder
 public class GroupDto {
-    private String groupName;
+    private String name;
 
     private List<String> participants;
 }
