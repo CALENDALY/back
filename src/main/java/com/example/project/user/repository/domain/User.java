@@ -42,4 +42,9 @@ public class User extends BaseEntity {
     public void updateToken(String accessToken) {
         this.accessToken = accessToken;
     }
+
+    public void matchEntity(MiddleEntityUserGroup middleEntityUserGroup){
+        middleEntityUserGroup.setUser(this);
+        this.groups.add(middleEntityUserGroup);
+    }
 }

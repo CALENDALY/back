@@ -1,8 +1,15 @@
 package com.example.project.group.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 
-@Getter
-public class GroupDto {
+import java.util.ArrayList;
+import java.util.List;
 
+@Getter
+@Builder
+public class GroupDto {
+    private String groupName;
+
+    private List<String> participants;
 }

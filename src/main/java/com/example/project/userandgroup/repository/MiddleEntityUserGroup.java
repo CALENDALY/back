@@ -25,5 +25,16 @@ public class MiddleEntityUserGroup {
     @ManyToOne(fetch = FetchType.LAZY)
     private Group group;
 
-
+    public MiddleEntityUserGroup(User user, Group group) {
+        this.user = user;
+        this.group = group;
+        user.matchEntity(this);
+        group.matchEntity(this);
+    }
+    public void setUser(User user){
+        this.user = user;
+    }
+    public void setGroup(Group group){
+        this.group = group;
+    }
 }
